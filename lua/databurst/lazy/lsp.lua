@@ -31,7 +31,6 @@ return {
     require('mason-lspconfig').setup({
       automatic_installation = false,
       ensure_installed = {
-        "tsserver",
         "lua_ls",
         "ruff",
         "pylsp",
