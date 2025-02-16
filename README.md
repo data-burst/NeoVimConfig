@@ -1,2 +1,9 @@
 # NeoVimConfig
 DataBurst's NVIM Starter Config
+
+
+# Dependencies
+
+1. NerdFonts icons
+2. [RipGrep](https://github.com/BurntSushi/ripgrep) for livegrep in telescope
+3. python3-venv for lsp servers
