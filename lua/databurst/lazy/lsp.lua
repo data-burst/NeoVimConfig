@@ -27,7 +27,29 @@ return {
 
     require("fidget").setup({})
     require("mason").setup()
-
+    local on_attach = function(client, buffer)
+      vim.api.nvim_buf_set_keymap(buffer, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
+        { noremap = true, silent = true })
+      vim.api.nvim_buf_set_keymap(buffer, 'n', '<leader>wl',
+        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { noremap = true, silent = true })
+    end
     require('mason-lspconfig').setup({
       automatic_installation = false,
       ensure_installed = {
@@ -47,11 +69,13 @@ return {
         function(server_name)
           require('lspconfig')[server_name].setup({
             capabilities = capabilities,
+            on_attach = on_attach,
           })
         end,
         lua_ls = function()
           require('lspconfig').lua_ls.setup({
             capabilities = capabilities,
+            on_attach = on_attach,
             settings = {
               Lua = {
                 runtime = {
@@ -82,32 +106,32 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
 
     local kind_icons = {
-    	Text = "󰊄",
-    	Method = "m",
-    	Function = "󰊕",
-    	Constructor = "",
-    	Field = "",
-    	Variable = "󰫧",
-    	Class = "󰝯",
-    	Interface = "",
-    	Module = "",
-    	Property = "",
-    	Unit = "",
-    	Value = "󰇼",
-    	Enum = "",
-    	Keyword = "",
-    	Snippet = "",
-    	Color = "",
-    	File = "",
-    	Reference = "",
-    	Folder = "",
-    	EnumMember = "",
-    	Constant = "ﲀ",
-    	Struct = "",
-    	Event = "",
-    	Operator = "",
-    	TypeParameter = "",
-    	Copilot = "",
+      Text = "󰊄",
+      Method = "m",
+      Function = "󰊕",
+      Constructor = "",
+      Field = "",
+      Variable = "󰫧",
+      Class = "󰝯",
+      Interface = "",
+      Module = "",
+      Property = "",
+      Unit = "",
+      Value = "󰇼",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "ﲀ",
+      Struct = "",
+      Event = "",
+      Operator = "",
+      TypeParameter = "",
+      Copilot = "",
     }
     cmp.setup({
       sources = {
@@ -129,7 +153,7 @@ return {
         end,
       },
       formatting = {
-        fields = {"kind", "abbr", "menu"},
+        fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
           vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
           vim_item.menu = ({
