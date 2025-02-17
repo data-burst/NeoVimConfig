@@ -1,5 +1,5 @@
 -- Formatting with LSP
-vim.keymap.set("n", "<space>f", function()
+vim.keymap.set("n", "ff", function()
   vim.lsp.buf.format()
 end)
 
