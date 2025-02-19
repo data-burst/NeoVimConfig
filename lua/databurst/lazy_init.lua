@@ -13,21 +13,13 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- require("lazy").setup({
---   spec = {
---     { import = "databurst.lazy" },
---   },
---   change_detection = { notify = false },
---   checker = { enabled = true },
--- })
 require("lazy").setup({
   spec = {
     -- import your plugins
-    { import = "databurst.lazy" },
+    { import = "databurst.plugins" },
   },
-  -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
