@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  neovim:
+    container_name: neovim
+    working_dir: /app
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/root/.config/nvim
+
