@@ -1,6 +1,6 @@
 vim.cmd.colorscheme("catppuccin") -- set colorscheme to catppuccin
 
-vim.opt.clipboard = "unnamedplus" -- use system clipboard
+-- vim.opt.clipboard = "unnamedplus" -- use system clipboard
 
 vim.opt.relativenumber = false -- use relative line numbers
 
