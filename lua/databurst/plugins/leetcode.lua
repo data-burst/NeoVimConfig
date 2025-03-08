@@ -10,4 +10,5 @@ return {
     -- configuration goes here
   },
   cmd = "Leet",
+  lazy = true,
 }

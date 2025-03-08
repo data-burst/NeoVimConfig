@@ -1,6 +1,6 @@
 return {
   'AntonVanAssche/music-controls.nvim',
-
+  lazy = false,
   config = function()
     require('music-controls').setup({
       default_player = 'spotify',

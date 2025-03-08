@@ -1,5 +1,6 @@
 return {
   "eandrju/cellular-automaton.nvim",
+  lazy = false,
   config = function()
     local config = {
       fps = 30,
