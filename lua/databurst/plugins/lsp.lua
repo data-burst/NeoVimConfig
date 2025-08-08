@@ -63,7 +63,8 @@ return {
         "dockerls",
         "jsonls",
         "sqlls",
-        "yamlls"
+        "yamlls",
+        "gopls"
       },
       handlers = {
         function(server_name)
